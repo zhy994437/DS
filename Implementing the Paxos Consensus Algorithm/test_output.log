@@ -1,0 +1,491 @@
+Paxos Test Suite
+================
+
+Testing Adelaide Suburbs Council Election
+9 council members (M1-M9) reaching consensus
+
+Starting Scenario 1...
+
+Setting up test environment...
+M1 initialized with RELIABLE profile
+Loaded config for 9 members
+M1 listening on port 9001
+M1 started
+M2 initialized with RELIABLE profile
+Loaded config for 9 members
+M2 listening on port 9002
+M2 started
+M3 initialized with RELIABLE profile
+Loaded config for 9 members
+M3 listening on port 9003
+M3 started
+M4 initialized with RELIABLE profile
+Loaded config for 9 members
+M4 listening on port 9004
+M4 started
+M5 initialized with RELIABLE profile
+Loaded config for 9 members
+M5 listening on port 9005
+M5 started
+M6 initialized with RELIABLE profile
+Loaded config for 9 members
+M6 listening on port 9006
+M6 started
+M7 initialized with RELIABLE profile
+Loaded config for 9 members
+M7 listening on port 9007
+M7 started
+M8 initialized with RELIABLE profile
+Loaded config for 9 members
+M8 listening on port 9008
+M8 started
+M9 initialized with RELIABLE profile
+Loaded config for 9 members
+M9 listening on port 9009
+M9 started
+Environment ready with 9 members
+
+=== SCENARIO 1: The Ideal Network ===
+All 9 members with RELIABLE profile
+M4 proposing M5 with 1.4
+M1 promising 1.4
+M2 promising 1.4
+M3 promising 1.4
+M5 promising 1.4
+M6 promising 1.4
+M8 promising 1.4
+M7 promising 1.4
+M9 promising 1.4
+M4 got majority promises (5/9)
+M1 accepting 1.4 = M5
+M2 accepting 1.4 = M5
+M3 accepting 1.4 = M5
+M5 accepting 1.4 = M5
+M6 accepting 1.4 = M5
+M7 accepting 1.4 = M5
+M8 accepting 1.4 = M5
+M9 accepting 1.4 = M5
+M4 achieved consensus! M5
+CONSENSUS: M5 elected as Council President!
+CONSENSUS: M5 elected as Council President!
+CONSENSUS: M5 elected as Council President!
+M3 learned consensus from M4
+CONSENSUS: M5 elected as Council President!
+M5 learned consensus from M4
+M1 learned consensus from M4
+CONSENSUS: M5 elected as Council President!
+M6 learned consensus from M4
+M2 learned consensus from M4
+CONSENSUS: M5 elected as Council President!
+M7 learned consensus from M4
+CONSENSUS: M5 elected as Council President!
+M8 learned consensus from M4
+CONSENSUS: M5 elected as Council President!
+M9 learned consensus from M4
+PASS: Consensus on M5
+Expected: Quick consensus, all members agree
+
+Member States:
+  M1 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+  M2 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+  M3 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+  M4 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:None, Accepted:None->None, Learned:None]
+  M5 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+  M6 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+  M7 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+  M8 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+  M9 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M5, Learned:M5]
+
+Starting Scenario 2...
+
+
+=== SCENARIO 2: Concurrent Proposals ===
+M1 and M8 propose simultaneously
+M1 proposing M1 with 1.1
+M8 proposing M8 with 1.8
+M1 promising 1.8
+M2 promising 1.1
+M4 promising 1.1
+M4 promising 1.8
+M3 promising 1.1
+M2 promising 1.8
+M8 promising 1.1
+M3 promising 1.8
+M5 promising 1.1
+M6 promising 1.1
+M9 promising 1.1
+M6 promising 1.8
+M1 got majority promises (5/9)
+M7 promising 1.1
+M8 got majority promises (5/9)
+M5 promising 1.8
+M2 rejecting accept 1.1 (promised 1.8)
+M7 promising 1.8
+M3 rejecting accept 1.1 (promised 1.8)
+M9 promising 1.8
+M2 accepting 1.8 = M8
+M4 rejecting accept 1.1 (promised 1.8)
+M5 rejecting accept 1.1 (promised 1.8)
+M3 accepting 1.8 = M8
+M4 accepting 1.8 = M8
+M5 accepting 1.8 = M8
+M8 accepting 1.1 = M1
+M7 rejecting accept 1.1 (promised 1.8)
+M7 accepting 1.8 = M8
+M1 accepting 1.8 = M8
+M6 rejecting accept 1.1 (promised 1.8)
+M6 accepting 1.8 = M8
+M9 accepting 1.8 = M8
+M8 achieved consensus! M8
+M9 rejecting accept 1.1 (promised 1.8)
+CONSENSUS: M8 elected as Council President!
+M1 learned consensus from M8
+CONSENSUS: M8 elected as Council President!
+M2 learned consensus from M8
+CONSENSUS: M8 elected as Council President!
+M3 learned consensus from M8
+CONSENSUS: M8 elected as Council President!
+M4 learned consensus from M8
+CONSENSUS: M8 elected as Council President!
+M5 learned consensus from M8
+CONSENSUS: M8 elected as Council President!
+M6 learned consensus from M8
+CONSENSUS: M8 elected as Council President!
+M7 learned consensus from M8
+CONSENSUS: M8 elected as Council President!
+M9 learned consensus from M8
+PASS: Consensus on M8
+Expected: Single winner (M1 or M8), all agree
+
+Member States:
+  M1 [Profile:RELIABLE, Crashed:false, Proposing:1.1, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+  M2 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+  M3 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+  M4 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+  M5 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+  M6 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+  M7 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+  M8 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.1, Accepted:1.1->M1, Learned:None]
+  M9 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.8, Accepted:1.8->M8, Learned:M8]
+
+Tearing down...
+M1 stopped
+M2 stopped
+M3 stopped
+M4 stopped
+M5 stopped
+M6 stopped
+M7 stopped
+M8 stopped
+M9 stopped
+
+Starting Scenario 3a...
+
+
+=== SCENARIO 3a: Standard Member Proposal ===
+M4 (standard) proposes with mixed network conditions
+
+Tearing down...
+Setting up test environment...
+M1 initialized with RELIABLE profile
+Loaded config for 9 members
+M1 listening on port 9001
+M1 started
+M2 initialized with LATENT profile
+Loaded config for 9 members
+M2 listening on port 9002
+M2 started
+M3 initialized with FAILURE profile
+Loaded config for 9 members
+M3 listening on port 9003
+M3 started
+M4 initialized with STANDARD profile
+Loaded config for 9 members
+M4 listening on port 9004
+M4 started
+M5 initialized with STANDARD profile
+Loaded config for 9 members
+M5 listening on port 9005
+M5 started
+M6 initialized with STANDARD profile
+Loaded config for 9 members
+M6 listening on port 9006
+M6 started
+M7 initialized with STANDARD profile
+Loaded config for 9 members
+M7 listening on port 9007
+M7 started
+M8 initialized with STANDARD profile
+Loaded config for 9 members
+M8 listening on port 9008
+M8 started
+M9 initialized with STANDARD profile
+Loaded config for 9 members
+M9 listening on port 9009
+M9 started
+Environment ready with 9 members
+
+M4 proposing M6 with 1.4
+M1 promising 1.4
+M2 promising 1.4
+M3 promising 1.4
+M5 promising 1.4
+M6 promising 1.4
+M7 promising 1.4
+M7 has CRASHED!
+M8 promising 1.4
+M9 promising 1.4
+M4 got majority promises (5/9)
+M1 accepting 1.4 = M6
+M4 has CRASHED!
+M4 cannot send (crashed)
+M4 cannot send (crashed)
+M4 cannot send (crashed)
+M4 cannot send (crashed)
+M4 cannot send (crashed)
+M2 accepting 1.4 = M6
+FAIL: null
+Expected: Consensus despite M2 latency and M3 failures
+
+Member States:
+  M1 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M6, Learned:None]
+  M2 [Profile:LATENT, Crashed:false, Proposing:No, Promised:1.4, Accepted:1.4->M6, Learned:None]
+  M3 [Profile:FAILURE, Crashed:false, Proposing:No, Promised:1.4, Accepted:None->None, Learned:None]
+  M4 [Profile:STANDARD, Crashed:true, Proposing:1.4, Promised:None, Accepted:None->None, Learned:None]
+  M5 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.4, Accepted:None->None, Learned:None]
+  M6 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.4, Accepted:None->None, Learned:None]
+  M7 [Profile:STANDARD, Crashed:true, Proposing:No, Promised:1.4, Accepted:None->None, Learned:None]
+  M8 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.4, Accepted:None->None, Learned:None]
+  M9 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.4, Accepted:None->None, Learned:None]
+
+Starting Scenario 3b...
+
+
+=== SCENARIO 3b: Latent Member Proposal ===
+M2 (latent) proposes despite high latency
+
+Tearing down...
+M1 stopped
+M2 stopped
+M3 stopped
+M4 stopped
+M5 stopped
+M6 stopped
+M7 stopped
+M8 stopped
+M9 stopped
+Setting up test environment...
+M1 initialized with RELIABLE profile
+Loaded config for 9 members
+M1 listening on port 9001
+M1 started
+M2 initialized with LATENT profile
+Loaded config for 9 members
+M2 listening on port 9002
+M2 started
+M3 initialized with FAILURE profile
+Loaded config for 9 members
+M3 listening on port 9003
+M3 started
+M4 initialized with STANDARD profile
+Loaded config for 9 members
+M4 listening on port 9004
+M4 started
+M5 initialized with STANDARD profile
+Loaded config for 9 members
+M5 listening on port 9005
+M5 started
+M6 initialized with STANDARD profile
+Loaded config for 9 members
+M6 listening on port 9006
+M6 started
+M7 initialized with STANDARD profile
+Loaded config for 9 members
+M7 listening on port 9007
+M7 started
+M8 initialized with STANDARD profile
+Loaded config for 9 members
+M8 listening on port 9008
+M8 started
+M9 initialized with STANDARD profile
+Loaded config for 9 members
+M9 listening on port 9009
+M9 started
+Environment ready with 9 members
+
+M2 proposing M7 with 1.2
+M2 found good connection at Sheoak Cafe!
+M1 promising 1.2
+M3 promising 1.2
+M3 has CRASHED!
+M2 dropping message due to network issues
+M5 promising 1.2
+M6 promising 1.2
+M2 found good connection at Sheoak Cafe!
+M7 promising 1.2
+M8 promising 1.2
+M2 got majority promises (5/9)
+M2 dropping message due to network issues
+M1 accepting 1.2 = M7
+M2 found good connection at Sheoak Cafe!
+M2 found good connection at Sheoak Cafe!
+M4 accepting 1.2 = M7
+M2 dropping message due to network issues
+M6 accepting 1.2 = M7
+M6 dropping message due to network issues
+M7 accepting 1.2 = M7
+M8 accepting 1.2 = M7
+M9 accepting 1.2 = M7
+M2 achieved consensus! M7
+M2 found good connection at Sheoak Cafe!
+M2 dropping message due to network issues
+CONSENSUS: M7 elected as Council President!
+M4 learned consensus from M2
+PASS: Consensus on M7
+Expected: Slow but successful consensus from latent proposer
+
+Member States:
+  M1 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.2, Accepted:1.2->M7, Learned:None]
+CONSENSUS: M7 elected as Council President!
+M5 learned consensus from M2
+CONSENSUS: M7 elected as Council President!
+M6 learned consensus from M2
+CONSENSUS: M7 elected as Council President!
+M7 learned consensus from M2
+M2 dropping message due to network issues
+M2 found good connection at Sheoak Cafe!
+  M2 [Profile:LATENT, Crashed:false, Proposing:No, Promised:None, Accepted:None->None, Learned:None]
+  M3 [Profile:FAILURE, Crashed:true, Proposing:No, Promised:1.2, Accepted:None->None, Learned:None]
+  M4 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.2, Accepted:1.2->M7, Learned:M7]
+  M5 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.2, Accepted:None->None, Learned:M7]
+  M6 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.2, Accepted:1.2->M7, Learned:M7]
+  M7 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.2, Accepted:1.2->M7, Learned:M7]
+  M8 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.2, Accepted:1.2->M7, Learned:None]
+CONSENSUS: M7 elected as Council President!
+M9 learned consensus from M2
+  M9 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.2, Accepted:1.2->M7, Learned:M7]
+
+Starting Scenario 3c...
+
+
+=== SCENARIO 3c: Failure Member Crash ===
+M3 (failure) proposes, crashes, then M5 takes over
+
+Tearing down...
+M1 stopped
+M2 stopped
+M3 stopped
+M4 stopped
+M5 stopped
+M6 stopped
+M7 stopped
+M8 stopped
+M9 stopped
+Setting up test environment...
+M1 initialized with RELIABLE profile
+Loaded config for 9 members
+M1 listening on port 9001
+M1 started
+M2 initialized with LATENT profile
+Loaded config for 9 members
+M2 listening on port 9002
+M2 started
+M3 initialized with FAILURE profile
+Loaded config for 9 members
+M3 listening on port 9003
+M3 started
+M4 initialized with STANDARD profile
+Loaded config for 9 members
+M4 listening on port 9004
+M4 started
+M5 initialized with STANDARD profile
+Loaded config for 9 members
+M5 listening on port 9005
+M5 started
+M6 initialized with STANDARD profile
+Loaded config for 9 members
+M6 listening on port 9006
+M6 started
+M7 initialized with STANDARD profile
+Loaded config for 9 members
+M7 listening on port 9007
+M7 started
+M8 initialized with STANDARD profile
+Loaded config for 9 members
+M8 listening on port 9008
+M8 started
+M9 initialized with STANDARD profile
+Loaded config for 9 members
+M9 listening on port 9009
+M9 started
+Environment ready with 9 members
+
+M3 proposing M9 with 1.3
+M3 has CRASHED!
+M3 has CRASHED!
+M3 crashed after sending PREPARE
+M5 initiating backup proposal
+M5 proposing M9 with 1.5
+M1 promising 1.5
+M2 promising 1.5
+M4 promising 1.5
+M6 promising 1.5
+M7 promising 1.5
+M8 promising 1.5
+M5 got majority promises (5/9)
+M8 dropping message due to network issues
+M9 promising 1.5
+M1 accepting 1.5 = M9
+M2 accepting 1.5 = M9
+M4 accepting 1.5 = M9
+M6 accepting 1.5 = M9
+M7 accepting 1.5 = M9
+M8 accepting 1.5 = M9
+M9 accepting 1.5 = M9
+M5 achieved consensus! M9
+M9 dropping message due to network issues
+M5 has CRASHED!
+M5 cannot send (crashed)
+M5 cannot send (crashed)
+M5 cannot send (crashed)
+M5 cannot send (crashed)
+M5 cannot send (crashed)
+M5 cannot send (crashed)
+CONSENSUS: M9 elected as Council President!
+M1 learned consensus from M5
+PASS: Consensus on M9
+Expected: System recovers, backup proposer succeeds
+
+Member States:
+  M1 [Profile:RELIABLE, Crashed:false, Proposing:No, Promised:1.5, Accepted:1.5->M9, Learned:M9]
+  M2 [Profile:LATENT, Crashed:false, Proposing:No, Promised:1.5, Accepted:1.5->M9, Learned:None]
+  M3 [Profile:FAILURE, Crashed:true, Proposing:1.3, Promised:None, Accepted:None->None, Learned:None]
+  M4 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.5, Accepted:1.5->M9, Learned:None]
+  M5 [Profile:STANDARD, Crashed:true, Proposing:No, Promised:None, Accepted:None->None, Learned:None]
+  M6 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.5, Accepted:1.5->M9, Learned:None]
+  M7 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.5, Accepted:1.5->M9, Learned:None]
+  M8 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.5, Accepted:1.5->M9, Learned:None]
+  M9 [Profile:STANDARD, Crashed:false, Proposing:No, Promised:1.5, Accepted:1.5->M9, Learned:None]
+
+Tearing down...
+M1 stopped
+M2 stopped
+M3 stopped
+M4 stopped
+M5 stopped
+M6 stopped
+M7 stopped
+M8 stopped
+M9 stopped
+
+================
+TEST SUMMARY
+================
+Scenario 1 (Ideal Network):          PASS
+Scenario 2 (Concurrent Proposals):   PASS
+Scenario 3a (Standard Member):       FAIL
+Scenario 3b (Latent Member):         PASS
+Scenario 3c (Failure Member):        PASS
+================
+Total: 4 passed, 1 failed
+Success Rate: 80.0%
